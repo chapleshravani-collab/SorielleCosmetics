@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyes Collection | Sorielle Cosmetics</title>
+    <meta name="description" content="Explore our precision eyeliner collection. Defining vision with luxury pigments.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #FFF9F5; }
+        .collection-hero { padding: 140px 0 60px; text-align: center; background: linear-gradient(135deg, #F5F5F5, #E8DCD5); }
+        .collection-hero h1 { font-family: var(--font-heading); font-size: 3.5rem; color: var(--text-dark); margin-bottom: 10px; }
+        .collection-hero p { font-size: 1.1rem; opacity: 0.6; letter-spacing: 1px; }
+
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 40px; 
+            padding: 80px 0; 
+        }
+
+        .product-card-luxury {
+            background: var(--white);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid rgba(183, 110, 121, 0.05);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .product-card-luxury:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(183, 110, 121, 0.12);
+            border-color: var(--rose-gold);
+        }
+
+        .product-card-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: #FDFBF9;
+            position: relative;
+        }
+
+        .product-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .product-card-luxury:hover .product-card-img img {
+            transform: scale(1.08);
+        }
+
+        .product-card-info {
+            padding: 24px;
+            text-align: center;
+        }
+
+        .product-card-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--rose-gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .product-card-name {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .product-card-price {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: 14px;
+            background: var(--rose-gold);
+            color: var(--white);
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-add-cart:hover {
+            background: #A65A65;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .collection-hero h1 { font-size: 2.5rem; }
+            .product-grid { grid-template-columns: 1fr; padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="menu-toggle" id="mobile-menu-btn"><i class="ph-light ph-list"></i></button>
+            <div class="logo"><a href="index.html">Sorielle</a></div>
+            <nav class="nav-links">
+                <a href="categories.html" class="active">Shop</a>
+                <a href="about.html">Story</a>
+                <a href="lab.html" style="color: var(--rose-gold); font-weight: 600;"><i class="ph-fill ph-sparkle"></i> Lab</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <div id="auth-container" class="auth-ui"></div>
+                <button class="icon-btn" id="open-cart">
+                    <i class="ph-light ph-tote"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="collection-hero fade-in">
+            <div class="container">
+                <h1>Eyes Collection</h1>
+                <p>Defining vision with luxury precision.</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="product-grid" id="eyes-grid">
+                <!-- Products will be injected here via script -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Sorielle</div>
+                    <p>Affordable luxury for every Indian woman.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sorielle Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2 class="cart-title">Your Cart</h2>
+            <button class="close-cart" id="close-cart"><i class="ph-light ph-x"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total</span>
+                <span id="cart-total-value">₹0.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" id="cart-checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { catalogProducts } from './products-data.js';
+        import { addToCart, updateCartUI } from './cart.js';
+
+        const eyesGrid = document.getElementById('eyes-grid');
+        const eyeProducts = catalogProducts.filter(p => p.category === 'Eyes');
+
+        const renderProducts = () => {
+            eyesGrid.innerHTML = eyeProducts.map(product => `
+                <div class="product-card-luxury fade-in" data-id="${product.id}">
+                    <div class="product-card-img">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-card-info">
+                        <span class="product-card-tag">${product.desc.split('.')[0]}</span>
+                        <h3 class="product-card-name">${product.name}</h3>
+                        <span class="product-card-price">₹${product.price}</span>
+                        <button class="btn-add-cart" data-id="${product.id}">
+                            <i class="ph-bold ph-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add Event Listeners
+            document.querySelectorAll('.btn-add-cart').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.id;
+                    const product = eyeProducts.find(p => p.id === id);
+                    addToCart({
+                        id: product.id,
+                        name: product.name,
+                        price: `₹${product.price}`,
+                        image: product.image
+                    });
+                    const drawer = document.getElementById('cart-drawer');
+                    if (drawer) drawer.classList.add('active');
+                });
+            });
+        };
+
+        renderProducts();
+        updateCartUI();
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

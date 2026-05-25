@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorielle Lab | Advanced Beauty Tech</title>
+    <meta name="description" content="Experience the future of beauty with Sorielle's AI Shade Finder and Virtual Try-On.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lab-page { padding-top: 100px; background: #0a0a0a; color: #fff; min-height: 100vh; overflow-x: hidden; }
+        .lab-hero { text-align: center; padding: 100px 20px; position: relative; }
+        .lab-hero h1 { font-size: clamp(3rem, 10vw, 5rem); margin-bottom: 20px; background: linear-gradient(to right, #fff, var(--rose-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .lab-section { padding: 100px 0; display: none; }
+        .lab-section.active { display: block; animation: fadeInUp 0.8s ease; }
+        
+        /* Glass Card */
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 40px; padding: 60px; max-width: 900px; margin: 0 auto; position: relative; }
+        
+        /* Shade Finder */
+        .quiz-step { display: none; }
+        .quiz-step.active { display: block; }
+        .skin-tone-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+        .tone-option { height: 120px; border-radius: 20px; cursor: pointer; transition: transform 0.3s; border: 3px solid transparent; }
+        .tone-option:hover { transform: scale(1.05); }
+        .tone-option.selected { border-color: #fff; }
+        
+        /* Virtual Try-On */
+        .tryon-container { display: grid; grid-template-columns: 1fr 300px; gap: 40px; }
+        .camera-preview { position: relative; background: #1a1a1a; border-radius: 32px; aspect-ratio: 4/5; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .face-outline { position: absolute; width: 60%; opacity: 0.3; pointer-events: none; }
+        .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--rose-gold); box-shadow: 0 0 20px var(--rose-gold); animation: scan 3s linear infinite; }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+        
+        .shade-selector { display: flex; flex-direction: column; gap: 16px; }
+        .shade-bubble { width: 50px; height: 50px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.3s; }
+        .shade-bubble.active { border-color: #fff; transform: scale(1.2); }
+        
+        /* Navigation */
+        .lab-nav { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; }
+        .lab-tab { padding: 12px 24px; border-radius: var(--radius-full); cursor: pointer; transition: all 0.3s; background: rgba(255,255,255,0.05); font-weight: 500; font-size: 0.9rem; }
+        .lab-tab.active { background: var(--rose-gold); color: #fff; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <header class="navbar" style="background: rgba(10,10,10,0.8); border-bottom-color: rgba(255,255,255,0.1);">
+        <div class="nav-container">
+            <div class="logo"><a href="index.html" style="color: #fff;">Sorielle</a></div>
+            <a href="index.html" class="btn-text" style="color: #fff;"><i class="ph-light ph-arrow-left"></i> Exit Lab</a>
+        </div>
+    </header>
+
+    <main class="lab-page">
+        <section class="lab-hero">
+            <div class="container">
+                <span class="carousel-badge" style="border-color: rgba(255,255,255,0.3); color: #fff;">Beta Experience</span>
+                <h1>The Sorielle Lab</h1>
+                <p style="opacity: 0.6; max-width: 600px; margin: 0 auto;">Merging high-end cosmetics with cutting-edge AI for a personalized beauty journey.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <nav class="lab-nav">
+                <div class="lab-tab active" data-target="shade-finder">Shade Finder</div>
+                <div class="lab-tab" data-target="virtual-tryon">Virtual Try-On</div>
+                <div class="lab-tab" data-target="skin-analyzer">Skin Analyzer</div>
+            </nav>
+
+            <!-- Shade Finder Quiz -->
+            <section class="lab-section active" id="shade-finder">
+                <div class="glass-card">
+                    <div id="quiz-container">
+                        <div class="quiz-step active" id="step-1">
+                            <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px;">Find your match.</h2>
+                            <p style="opacity: 0.6; margin-bottom: 40px;">What is your primary skin concern today?</p>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <button class="btn btn-google" style="background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.1);" onclick="nextStep(2)">Achieving a natural glow</button>
+                                <button class="btn btn-google" style="background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.1);" onclick="nextStep(2)">Long-lasting matte finish</button>
+                                <button class="btn btn-google" style="background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.1);" onclick="nextStep(2)">High-coverage correction</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-step" id="step-2">
+                            <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px;">Select your depth.</h2>
+                            <p style="opacity: 0.6;">Choose the tone that most closely resembles your natural skin.</p>
+                            <div class="skin-tone-grid">
+                                <div class="tone-option" style="background: #F6E1D3;" onclick="selectTone(this)"></div>
+                                <div class="tone-option" style="background: #E8B99A;" onclick="selectTone(this)"></div>
+                                <div class="tone-option" style="background: #D1946D;" onclick="selectTone(this)"></div>
+                                <div class="tone-option" style="background: #B4734D;" onclick="selectTone(this)"></div>
+                                <div class="tone-option" style="background: #8B5738;" onclick="selectTone(this)"></div>
+                                <div class="tone-option" style="background: #5D3A26;" onclick="selectTone(this)"></div>
+                            </div>
+                            <button class="btn btn-primary" style="width: 100%; margin-top: 40px;" onclick="nextStep(3)">See Recommendations</button>
+                        </div>
+
+                        <div class="quiz-step" id="step-3">
+                            <div style="text-align: center;">
+                                <i class="ph-fill ph-check-circle" style="font-size: 4rem; color: #4CAF50; margin-bottom: 20px;"></i>
+                                <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px;">Your Perfect Match</h2>
+                                <p style="opacity: 0.6; margin-bottom: 40px;">Based on your inputs, we recommend **Lumière Foundation #04**.</p>
+                                <button class="btn btn-primary">Add to Bag</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Virtual Try-On -->
+            <section class="lab-section" id="virtual-tryon">
+                <div class="glass-card">
+                    <div class="tryon-container">
+                        <div class="camera-preview">
+                            <div class="scan-line"></div>
+                            <img src="https://images.unsplash.com/photo-1522337360788-8b13df772ec2?q=80&w=1000&auto=format&fit=crop" alt="User Face" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">
+                            <div id="lip-overlay" style="position: absolute; bottom: 35%; width: 30%; height: 10%; background: var(--rose-gold); filter: blur(10px); opacity: 0.6; border-radius: 50% 50% 40% 40%;"></div>
+                            <p style="position: absolute; bottom: 20px; font-size: 0.8rem; opacity: 0.5;">[Conceptual AI Tracking...]</p>
+                        </div>
+                        <div class="shade-selector">
+                            <h3 style="margin-bottom: 20px;">Select Shade</h3>
+                            <div class="shade-bubble active" style="background: #B76E79;" onclick="setLipColor('#B76E79', this)"></div>
+                            <div class="shade-bubble" style="background: #8B0000;" onclick="setLipColor('#8B0000', this)"></div>
+                            <div class="shade-bubble" style="background: #FF6347;" onclick="setLipColor('#FF6347', this)"></div>
+                            <div class="shade-bubble" style="background: #DB7093;" onclick="setLipColor('#DB7093', this)"></div>
+                            <div class="shade-bubble" style="background: #FF1493;" onclick="setLipColor('#FF1493', this)"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skin Analyzer -->
+            <section class="lab-section" id="skin-analyzer">
+                <div class="glass-card" style="text-align: center;">
+                    <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 12px;">AI Skin Analysis</h2>
+                    <p style="opacity: 0.6; margin-bottom: 40px;">Input your concerns for a personalized ritual.</p>
+                    
+                    <div class="form-group" style="max-width: 400px; margin: 0 auto 32px; text-align: left;">
+                        <label style="color: #fff; opacity: 0.8;">Skin Type</label>
+                        <select style="width: 100%; padding: 14px; border-radius: 12px; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); margin-top: 8px;">
+                            <option>Oily</option>
+                            <option>Dry</option>
+                            <option>Combination</option>
+                            <option>Sensitive</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" id="analyze-btn" style="padding: 16px 60px;">Analyze Now</button>
+
+                    <div id="analysis-result" style="margin-top: 60px; display: none;">
+                        <div class="auth-divider"><span>Result</span></div>
+                        <p style="font-size: 1.2rem; margin-bottom: 20px;">Your skin is **Hydration Depleted**.</p>
+                        <div style="display: flex; gap: 20px; justify-content: center;">
+                            <div class="wish-item" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 20px;">
+                                <div class="wish-img" style="width: 100px; height: 100px; margin: 0 auto 10px;"><img src="assets/product_moisturizer_1777119378878.png" alt=""></div>
+                                <p style="font-size: 0.8rem;">Silk Cloud Moisturizer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Tab Logic
+        document.querySelectorAll('.lab-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.lab-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.lab-section').forEach(s => s.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.target).classList.add('active');
+            });
+        });
+
+        // Quiz Logic
+        window.nextStep = (step) => {
+            document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+        };
+
+        window.selectTone = (el) => {
+            document.querySelectorAll('.tone-option').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+        };
+
+        // Try-On Logic
+        window.setLipColor = (color, el) => {
+            document.querySelectorAll('.shade-bubble').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            document.getElementById('lip-overlay').style.background = color;
+        };
+
+        // Analyzer Logic
+        document.getElementById('analyze-btn')?.addEventListener('click', function() {
+            const btn = this;
+            btn.innerText = "Analyzing...";
+            setTimeout(() => {
+                btn.style.display = 'none';
+                document.getElementById('analysis-result').style.display = 'block';
+                document.getElementById('analysis-result').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

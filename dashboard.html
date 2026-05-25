@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | Sorielle Cosmetics</title>
+    <meta name="description" content="Manage your orders, wishlist, and profile with Sorielle.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dashboard-page { padding-top: 120px; padding-bottom: 80px; background: #fafafa; min-height: 100vh; }
+        .dashboard-grid { display: grid; grid-template-columns: 300px 1fr; gap: 40px; }
+        
+        /* Sidebar */
+        .dashboard-sidebar { display: flex; flex-direction: column; gap: 12px; }
+        .sidebar-card { background: var(--white); padding: 32px; border-radius: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: center; }
+        .sidebar-avatar { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 16px; border: 4px solid var(--ivory); }
+        .sidebar-name { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 4px; }
+        .sidebar-email { font-size: 0.85rem; opacity: 0.5; }
+        
+        .dashboard-nav { display: flex; flex-direction: column; gap: 8px; margin-top: 24px; }
+        .dash-nav-link { padding: 16px 20px; border-radius: 16px; display: flex; align-items: center; gap: 12px; transition: all 0.3s; font-weight: 500; }
+        .dash-nav-link i { font-size: 1.25rem; color: var(--rose-gold); }
+        .dash-nav-link:hover, .dash-nav-link.active { background: var(--white); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .dash-nav-link.active { color: var(--rose-gold); }
+        
+        /* Main Content */
+        .dash-section { display: none; }
+        .dash-section.active { display: block; }
+        
+        .dash-card { background: var(--white); padding: 32px; border-radius: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); margin-bottom: 24px; }
+        .dash-card-title { font-size: 1.25rem; margin-bottom: 24px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+        
+        /* Orders List */
+        .order-item { display: flex; justify-content: space-between; align-items: center; padding: 20px; border: 1px solid rgba(0,0,0,0.05); border-radius: 16px; margin-bottom: 12px; }
+        .order-info h4 { margin-bottom: 4px; }
+        .order-info p { font-size: 0.85rem; opacity: 0.5; }
+        .order-status { padding: 6px 12px; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .status-delivered { background: #e8f5e9; color: #2e7d32; }
+        .status-pending { background: #fff8e1; color: #f57f17; }
+        
+        /* Wishlist Grid */
+        .wishlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .wish-item { text-align: center; }
+        .wish-img { width: 100%; aspect-ratio: 1; border-radius: 20px; background: var(--ivory); margin-bottom: 12px; overflow: hidden; }
+        .wish-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Addresses */
+        .address-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .address-card { padding: 24px; border: 2px dashed rgba(0,0,0,0.1); border-radius: 20px; position: relative; background: var(--white); transition: all 0.3s; }
+        .address-card.default { border-color: var(--rose-gold); border-style: solid; background: rgba(183, 110, 121, 0.02); }
+        .address-card h4 { margin-bottom: 8px; font-family: var(--font-heading); font-size: 1.2rem; }
+        .address-card p { font-size: 0.9rem; opacity: 0.6; line-height: 1.5; }
+        
+        /* Address Modal Form */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--white); width: 100%; max-width: 500px; border-radius: 32px; position: relative; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); transform: translateY(20px); transition: transform 0.4s ease; max-height: 90vh; overflow-y: auto; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .close-modal { position: absolute; top: 24px; right: 24px; background: none; border: none; font-size: 1.5rem; cursor: pointer; opacity: 0.5; transition: opacity 0.3s; }
+        .close-modal:hover { opacity: 1; }
+        
+        .form-group { margin-bottom: 20px; text-align: left; }
+        .form-label { display: block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: var(--text-dark); }
+        .form-input { width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; font-family: var(--font-body); font-size: 1rem; outline: none; transition: border-color 0.3s; }
+        .form-input:focus { border-color: var(--rose-gold); }
+        .btn-save { width: 100%; padding: 16px; background: var(--rose-gold); color: var(--white); border: none; border-radius: 16px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s; margin-top: 10px; }
+        .btn-save:hover { background: #A65A65; transform: translateY(-2px); }
+
+        @media (max-width: 992px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .dashboard-sidebar { flex-direction: row; flex-wrap: wrap; }
+            .sidebar-card { width: 100%; }
+            .dashboard-nav { flex-direction: row; width: 100%; overflow-x: auto; padding-bottom: 10px; }
+            .dash-nav-link { flex-shrink: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="menu-toggle" id="mobile-menu-btn"><i class="ph-light ph-list"></i></button>
+            <div class="logo"><a href="index.html">Sorielle</a></div>
+            <nav class="nav-links">
+                <a href="categories.html">Shop</a>
+                <a href="about.html">Story</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <div id="auth-container" class="auth-ui"></div>
+                <button class="icon-btn" id="open-cart">
+                    <i class="ph-light ph-tote"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-page">
+        <div class="container">
+            <div class="dashboard-grid">
+                <!-- Sidebar -->
+                <aside class="dashboard-sidebar">
+                    <div class="sidebar-card">
+                        <img src="" alt="" class="sidebar-avatar" id="dash-user-avatar">
+                        <h2 class="sidebar-name" id="dash-user-name">Loading...</h2>
+                        <p class="sidebar-email" id="dash-user-email"></p>
+                    </div>
+                    
+                    <nav class="dashboard-nav">
+                        <a href="#orders" class="dash-nav-link active" data-target="orders-section">
+                            <i class="ph-fill ph-package"></i> My Orders
+                        </a>
+                        <a href="#wishlist" class="dash-nav-link" data-target="wishlist-section">
+                            <i class="ph-fill ph-heart"></i> Wishlist
+                        </a>
+                        <a href="#addresses" class="dash-nav-link" data-target="addresses-section">
+                            <i class="ph-fill ph-map-pin"></i> Saved Addresses
+                        </a>
+                        <a href="#" class="dash-nav-link" id="dash-logout">
+                            <i class="ph-fill ph-sign-out"></i> Logout
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Content Area -->
+                <div class="dashboard-content">
+                    <!-- Orders Section -->
+                    <section class="dash-section active" id="orders-section">
+                        <div class="dash-card">
+                            <h2 class="dash-card-title">Recent Orders</h2>
+                            <div class="orders-list">
+                                <div class="order-item">
+                                    <div class="order-info">
+                                        <h4>Order #SRL-8821</h4>
+                                        <p>Placed on May 01, 2026 • ₹1,299</p>
+                                    </div>
+                                    <span class="order-status status-pending">Processing</span>
+                                </div>
+                                <div class="order-item">
+                                    <div class="order-info">
+                                        <h4>Order #SRL-7740</h4>
+                                        <p>Placed on Apr 24, 2026 • ₹849</p>
+                                    </div>
+                                    <span class="order-status status-delivered">Delivered</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Wishlist Section -->
+                    <section class="dash-section" id="wishlist-section">
+                        <div class="dash-card">
+                            <h2 class="dash-card-title">My Wishlist</h2>
+                            <div class="wishlist-grid">
+                                <div class="wish-item">
+                                    <div class="wish-img"><img src="assets/lip_gloss.png" alt="Product"></div>
+                                    <p style="font-weight: 500;">Rose Glow Lip Gloss</p>
+                                    <p style="color: var(--rose-gold); font-weight: 600;">₹499</p>
+                                </div>
+                                <div class="wish-item">
+                                    <div class="wish-img"><img src="assets/product_serum_1777119333775.png" alt="Product"></div>
+                                    <p style="font-weight: 500;">Lumière Serum</p>
+                                    <p style="color: var(--rose-gold); font-weight: 600;">₹899</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Addresses Section -->
+                    <section class="dash-section" id="addresses-section">
+                        <div class="dash-card">
+                            <h2 class="dash-card-title">Saved Addresses</h2>
+                            <div class="address-grid" id="address-list-container">
+                                <div class="address-card default">
+                                    <h4>Home</h4>
+                                    <p>Flat 402, Radiant Heights, Viman Nagar, Pune, Maharashtra 411014</p>
+                                    <p style="margin-top: 12px; font-weight: 600;">+91 9423646946</p>
+                                </div>
+                                <div class="address-card" id="btn-open-add-address" style="border: 2px dashed rgba(183, 110, 121, 0.4); background: rgba(183, 110, 121, 0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 160px; cursor: pointer; border-radius: 20px; transition: all 0.3s; text-align: center; padding: 20px;">
+                                    <div style="opacity: 0.6; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B76E79" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                                        </svg>
+                                        <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; color: var(--rose-gold);">Add New Address</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Sorielle</div>
+                    <p>Affordable luxury for every Indian woman.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="categories.html">Shop</a>
+                    <a href="about.html">Our Story</a>
+                    <a href="policy.html">Shipping & Returns</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sorielle Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Address Modal -->
+    <div class="modal-overlay" id="add-address-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-address-modal"><i class="ph-light ph-x"></i></button>
+            <h3 style="font-family: var(--font-heading); font-size: 1.75rem; margin-bottom: 24px; text-align: center;">Add New Address</h3>
+            <form id="new-address-form">
+                <div class="form-group">
+                    <label class="form-label">Address Title</label>
+                    <input type="text" class="form-input" id="addr-title" placeholder="e.g. Home, Office, Work" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Full Address</label>
+                    <textarea class="form-input" id="addr-full" rows="3" placeholder="Flat / House no., Building, Street, Area, City, State, Pincode" style="resize: none;" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" id="addr-phone" placeholder="e.g. +91 9876543210" required>
+                </div>
+                <button type="submit" class="btn-save" id="btn-save-address">Save Address</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { observeAuth, logoutUser } from './auth-service.js';
+        import { getUserAddresses, addUserAddress } from './db-service.js';
+
+        let currentUser = null;
+        const addressContainer = document.getElementById('address-list-container');
+        const addModal = document.getElementById('add-address-modal');
+        const form = document.getElementById('new-address-form');
+
+        const renderAddresses = async (userId) => {
+            const addresses = userId ? await getUserAddresses(userId) : [];
+            
+            let html = '';
+            addresses.forEach(addr => {
+                html += `
+                    <div class="address-card default fade-in">
+                        <h4>${addr.title}</h4>
+                        <p>${addr.fullAddress}</p>
+                        <p style="margin-top: 12px; font-weight: 600;">${addr.phone}</p>
+                    </div>
+                `;
+            });
+            
+            // Show default static Home address if no saved addresses found
+            if (addresses.length === 0) {
+                html += `
+                    <div class="address-card default fade-in">
+                        <h4>Home</h4>
+                        <p>Flat 402, Radiant Heights, Viman Nagar, Pune, Maharashtra 411014</p>
+                        <p style="margin-top: 12px; font-weight: 600;">+91 9423646946</p>
+                    </div>
+                `;
+            }
+            
+            // Add the Add New Address trigger card with faint inline SVG design
+            html += `
+                <div class="address-card fade-in" id="btn-open-add-address" style="border: 2px dashed rgba(183, 110, 121, 0.4); background: rgba(183, 110, 121, 0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 160px; cursor: pointer; border-radius: 20px; transition: all 0.3s; text-align: center; padding: 20px;">
+                    <div style="opacity: 0.6; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B76E79" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        <span style="font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; color: var(--rose-gold);">Add New Address</span>
+                    </div>
+                </div>
+            `;
+            
+            addressContainer.innerHTML = html;
+            
+            // Bind open modal click listener
+            const openBtn = document.getElementById('btn-open-add-address');
+            if (openBtn) {
+                openBtn.addEventListener('click', () => {
+                    addModal.classList.add('active');
+                });
+            }
+        };
+
+        // Render initially so layout is instantly visible even before auth completes or when local previewing
+        renderAddresses(null);
+
+        observeAuth((user) => {
+            if (!user) {
+                // Allow guests/local previews to stay on page and view the beautiful dashboard layout
+                document.getElementById('dash-user-name').innerText = 'Guest User';
+                document.getElementById('dash-user-email').innerText = 'Welcome to Sorielle';
+                return;
+            }
+            currentUser = user;
+
+            document.getElementById('dash-user-avatar').src = user.photoURL || 'https://via.placeholder.com/100';
+            document.getElementById('dash-user-name').innerText = user.displayName || 'Sorielle User';
+            document.getElementById('dash-user-email').innerText = user.email;
+            
+            renderAddresses(user.uid);
+        });
+
+        // Modal Triggers
+        const initialOpenBtn = document.getElementById('btn-open-add-address');
+        if (initialOpenBtn) {
+            initialOpenBtn.addEventListener('click', () => {
+                addModal.classList.add('active');
+            });
+        }
+
+        document.getElementById('close-address-modal').addEventListener('click', () => {
+            addModal.classList.remove('active');
+        });
+
+        addModal.addEventListener('click', (e) => {
+            if (e.target === addModal) addModal.classList.remove('active');
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const saveBtn = document.getElementById('btn-save-address');
+            const origText = saveBtn.innerText;
+            saveBtn.innerText = 'Saving...';
+            saveBtn.disabled = true;
+            
+            const newAddr = {
+                title: document.getElementById('addr-title').value.trim(),
+                fullAddress: document.getElementById('addr-full').value.trim(),
+                phone: document.getElementById('addr-phone').value.trim()
+            };
+            
+            if (currentUser) {
+                try {
+                    await addUserAddress(currentUser.uid, newAddr);
+                    form.reset();
+                    addModal.classList.remove('active');
+                    await renderAddresses(currentUser.uid);
+                } catch (err) {
+                    console.warn('Firestore write permission restricted/offline. Appending locally.');
+                    appendLocally(newAddr);
+                } finally {
+                    saveBtn.innerText = origText;
+                    saveBtn.disabled = false;
+                }
+            } else {
+                appendLocally(newAddr);
+                saveBtn.innerText = origText;
+                saveBtn.disabled = false;
+            }
+        });
+
+        function appendLocally(newAddr) {
+            const btnCard = document.getElementById('btn-open-add-address');
+            const newCardDiv = document.createElement('div');
+            newCardDiv.className = 'address-card default fade-in';
+            newCardDiv.innerHTML = `
+                <h4>${newAddr.title}</h4>
+                <p>${newAddr.fullAddress}</p>
+                <p style="margin-top: 12px; font-weight: 600;">${newAddr.phone}</p>
+            `;
+            addressContainer.insertBefore(newCardDiv, btnCard);
+            form.reset();
+            addModal.classList.remove('active');
+        }
+
+        // Tab Switching
+        document.querySelectorAll('.dash-nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.id === 'dash-logout') {
+                    e.preventDefault();
+                    logoutUser();
+                    return;
+                }
+                
+                const target = link.dataset.target;
+                if (!target) return;
+
+                document.querySelectorAll('.dash-nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+
+                link.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        document.getElementById('dash-logout').addEventListener('click', () => {
+            logoutUser();
+        });
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

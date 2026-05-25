@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Face Serum | Sorielle Cosmetics</title>
+    <meta name="description" content="Discover the Lumière Face Serum - Your secret to radiant, glowing skin.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="product-page">
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="menu-toggle" id="mobile-menu-btn"><i class="ph-light ph-list"></i></button>
+            <div class="logo"><a href="index.html">Sorielle</a></div>
+            <nav class="nav-links">
+                <a href="categories.html">Shop</a>
+                <a href="about.html">Story</a>
+                <a href="lab.html" style="color: var(--rose-gold); font-weight: 600;"><i class="ph-fill ph-sparkle"></i> Lab</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <button class="icon-btn"><i class="ph-light ph-magnifying-glass"></i></button>
+                <div id="auth-container" class="auth-ui">
+                    <button class="btn-text" id="login-btn">Login</button>
+                    <button class="btn btn-primary btn-sm" id="signup-btn">Sign Up</button>
+                </div>
+                <button class="icon-btn" id="open-cart">
+                    <i class="ph-light ph-tote"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="product-main">
+        <div class="product-container">
+            <!-- Product Images -->
+            <div class="product-gallery">
+                <div class="image-zoom-container">
+                    <img src="assets/product_detail.png" alt="Lumière Face Serum" id="main-product-image">
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details-content">
+                <header class="product-header">
+                    <h1 class="product-title">Lumière Face Serum</h1>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="ph-fill ph-star"></i>
+                            <i class="ph-fill ph-star"></i>
+                            <i class="ph-fill ph-star"></i>
+                            <i class="ph-fill ph-star"></i>
+                            <i class="ph-fill ph-star"></i>
+                        </div>
+                        <span class="reviews-count">4.9 (124 Reviews)</span>
+                    </div>
+                    <div class="price-container">
+                        <span class="price-tag">₹899.00</span>
+                        <span class="compare-price">₹1299.00</span>
+                        <span class="discount-badge">30% OFF</span>
+                    </div>
+                </header>
+
+                <section class="product-section">
+                    <p class="product-description">
+                        Indulge in the ultimate radiance. Our Lumière Face Serum is meticulously crafted with rare botanical extracts and hyaluronic acid to deliver a weightless, luminous glow that lasts all day.
+                    </p>
+                </section>
+
+                <section class="product-section">
+                    <h3 class="section-label">Select Shade</h3>
+                    <div class="shade-selector">
+                        <button class="shade-btn active" style="background-color: #F8F5F2;" title="Pearl Glow"></button>
+                        <button class="shade-btn" style="background-color: #E8DCD5;" title="Nude Radiance"></button>
+                        <button class="shade-btn" style="background-color: #FADCD9;" title="Rosy Mist"></button>
+                    </div>
+                </section>
+
+                <section class="product-section">
+                    <h3 class="section-label">Suitable For</h3>
+                    <div class="skin-types">
+                        <span class="type-tag">Dry</span>
+                        <span class="type-tag">Oily</span>
+                        <span class="type-tag">Combination</span>
+                    </div>
+                </section>
+
+                <section class="product-section collapsible">
+                    <div class="collapsible-header">
+                        <h3 class="section-label">Ingredients</h3>
+                        <i class="ph-light ph-caret-down"></i>
+                    </div>
+                    <div class="collapsible-content">
+                        <p>Hyaluronic Acid, Vitamin C, Organic Rosehip Oil, Niacinamide, Squalane, Green Tea Extract, Frankincense Essential Oil.</p>
+                    </div>
+                </section>
+
+                <section class="product-section">
+                    <h3 class="section-label">Customer Reviews</h3>
+                    <div class="reviews-list">
+                        <div class="review-card">
+                            <div class="review-header">
+                                <span class="reviewer-name">Ananya S.</span>
+                                <div class="review-stars">
+                                    <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                </div>
+                            </div>
+                            <p class="review-text">"Absolutely love how this feels on my skin. It gives such a subtle glow without being oily!"</p>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-header">
+                                <span class="reviewer-name">Riya K.</span>
+                                <div class="review-stars">
+                                    <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                </div>
+                            </div>
+                            <p class="review-text">"The best serum I've ever used. My skin feels so much more hydrated and plump."</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sticky Bottom CTA -->
+    <div class="sticky-cta">
+        <div class="sticky-cta-container">
+            <div class="cta-price-info">
+                <span class="cta-price">₹899.00</span>
+                <span class="cta-sub">Free Delivery</span>
+            </div>
+            <button class="btn btn-primary cta-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-checkout"><i class="ph-light ph-x"></i></button>
+            <h2 class="modal-title">Complete Your Order</h2>
+            <p class="modal-subtitle">Experience the glow of Sorielle</p>
+            
+            <form id="order-form" class="checkout-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="Enter your mobile number">
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <textarea id="address" required placeholder="Enter your full address"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" required placeholder="Your city">
+                </div>
+                
+                <div class="order-summary-mini">
+                    <span>Cart Total:</span>
+                    <span class="total-price-value" id="checkout-total-value">₹0.00</span>
+                </div>
+                
+                <button type="submit" class="btn btn-primary submit-order-btn">Confirm Order via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Sorielle</div>
+                    <p>Affordable luxury for every Indian woman.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="categories.html">Shop</a>
+                    <a href="about.html">Our Story</a>
+                    <a href="policy.html">Shipping & Returns</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="#">FAQs</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sorielle Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="success-overlay">
+        <div class="success-content">
+            <div class="checkmark-wrapper">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <h2 class="success-title">Order Confirmed!</h2>
+            <p class="success-desc">Redirecting to WhatsApp...</p>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2 class="cart-title">Your Cart</h2>
+            <button class="close-cart" id="close-cart"><i class="ph-light ph-x"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <!-- Items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total</span>
+                <span id="cart-total-value">₹0.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" id="cart-checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

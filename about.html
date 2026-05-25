@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Sorielle Cosmetics</title>
+    <meta name="description" content="Discover the heart of Sorielle Cosmetics—celebrating the confidence and diversity of Indian beauty.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: #F8EDED;
+        }
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .about-hero-title {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        @keyframes slowBloom {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .story-section { padding: 120px 0; }
+        .story-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 80px; 
+            align-items: center; 
+        }
+        
+        .story-image-container {
+            position: relative;
+            border-radius: 40px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            box-shadow: 0 40px 100px rgba(183, 110, 121, 0.15);
+            border: 1px solid rgba(183, 110, 121, 0.1);
+        }
+        .story-image-container img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            animation: slowBloom 20s ease-out infinite alternate;
+        }
+        
+        .story-text { display: flex; flex-direction: column; gap: 32px; }
+        .story-tag { 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            color: var(--rose-gold); 
+        }
+        .story-heading { 
+            font-size: 3.5rem; 
+            line-height: 1.2; 
+            font-family: 'Playfair Display', serif; 
+        }
+        .story-desc { font-size: 1.1rem; line-height: 1.8; opacity: 0.7; }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 80px;
+        }
+        .philosophy-card {
+            background: var(--white);
+            padding: 48px;
+            border-radius: 32px;
+            text-align: center;
+            border: 1px solid rgba(183, 110, 121, 0.05);
+            transition: all 0.4s ease;
+        }
+        .philosophy-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(183, 110, 121, 0.1); }
+        .philosophy-icon { font-size: 3rem; color: var(--rose-gold); margin-bottom: 24px; }
+
+        @media (max-width: 992px) {
+            .story-grid { grid-template-columns: 1fr; gap: 60px; }
+            .story-heading { font-size: 2.5rem; }
+            .philosophy-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="menu-toggle" id="mobile-menu-btn"><i class="ph-light ph-list"></i></button>
+            <div class="logo"><a href="index.html">Sorielle</a></div>
+            <nav class="nav-links">
+                <a href="categories.html">Shop</a>
+                <a href="about.html" class="active">Story</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <div id="auth-container" class="auth-ui"></div>
+                <button class="icon-btn" id="open-cart">
+                    <i class="ph-light ph-tote"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="about-hero-content fade-in">
+                <p class="story-tag">Our Vision</p>
+                <h1 class="about-hero-title">Beyond the Mirror.</h1>
+                <p style="font-size: 1.2rem; opacity: 0.6; letter-spacing: 1px;">Experience the art of self-expression.</p>
+            </div>
+        </section>
+
+        <!-- Section 1: The Beginning -->
+        <section class="story-section container">
+            <div class="story-grid">
+                <div class="story-text fade-in">
+                    <span class="story-tag">The Beginning</span>
+                    <h2 class="story-heading">Born to Empower.</h2>
+                    <p class="story-desc">
+                        Sorielle was founded on a simple yet profound belief: that beauty is not a standard to be met, but a form of self-expression to be celebrated. In a world of filtered perfection, we sought to create a brand that honors the raw, the real, and the radiant.
+                    </p>
+                    <p class="story-desc">
+                        Our journey started in the vibrant heart of India, inspired by the diverse landscapes and the even more diverse complexions that call this land home.
+                    </p>
+                </div>
+                <div class="story-image-container fade-in">
+                    <img src="https://images.unsplash.com/photo-1594465919760-441fe5908ab0?q=80&w=1000&auto=format&fit=crop" alt="Pure Radiance">
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Inclusion (With New Generated Image) -->
+        <section class="story-section" style="background: rgba(183, 110, 121, 0.03);">
+            <div class="container">
+                <div class="story-grid" style="direction: rtl;">
+                    <div class="story-text fade-in" style="direction: ltr;">
+                        <span class="story-tag">Inclusion</span>
+                        <h2 class="story-heading">Celebrating Every Hue.</h2>
+                        <p class="story-desc">
+                            Indian skin is a masterpiece of depth and richness. From the golden sands of Rajasthan to the deep cocoas of the south, every tone deserves to be seen, celebrated, and complemented.
+                        </p>
+                        <p class="story-desc">
+                            We meticulously craft our shades to ensure that whether you are fair, olive, deep, or anywhere in between, Sorielle feels like it was made just for you. Because it was.
+                        </p>
+                    </div>
+                    <div class="story-image-container fade-in">
+                        <img src="assets/indian_skin_diversity.png" alt="Sorielle Diversity Collection">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy -->
+        <section class="story-section container">
+            <div style="text-align: center; margin-bottom: 80px;">
+                <span class="story-tag">Values</span>
+                <h2 class="story-heading">The Sorielle Philosophy</h2>
+            </div>
+            <div class="philosophy-grid">
+                <div class="philosophy-card fade-in">
+                    <i class="ph-light ph-sparkle philosophy-icon"></i>
+                    <h3>Confidence</h3>
+                    <p class="story-desc">Makeup that doesn't mask, but highlights the strength already within you.</p>
+                </div>
+                <div class="philosophy-card fade-in">
+                    <i class="ph-light ph-leaf philosophy-icon"></i>
+                    <h3>Authenticity</h3>
+                    <p class="story-desc">Clean formulations and honest promises. No clutter, just botanical quality.</p>
+                </div>
+                <div class="philosophy-card fade-in">
+                    <i class="ph-light ph-flower-lotus philosophy-icon"></i>
+                    <h3>Heritage</h3>
+                    <p class="story-desc">Modern science rooted in the timeless beauty secrets of Indian culture.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding: 120px 0; text-align: center; background: var(--white);">
+            <div class="container">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-style: italic; max-width: 800px; margin: 0 auto; line-height: 1.4;">
+                    "Glow Beyond Beauty is an invitation to step into your power and illuminate the world with your unique light."
+                </h2>
+                <p style="margin-top: 40px; font-weight: 600; letter-spacing: 3px; color: var(--rose-gold);">DEFINED BY PURITY. TRUSTED BY YOU.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Sorielle</div>
+                    <p>Affordable luxury for every Indian woman.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="categories.html">Shop</a>
+                    <a href="about.html">Our Story</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sorielle Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

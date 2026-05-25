@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy | Sorielle Cosmetics</title>
+    <meta name="description" content="Sorielle Cosmetics return and refund policies.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .policy-page { padding-top: 120px; padding-bottom: 80px; background: var(--white); min-height: 100vh; }
+        .policy-container { max-width: 800px; margin: 0 auto; }
+        .policy-content { margin-top: 60px; display: flex; flex-direction: column; gap: 40px; }
+        .policy-section h2 { font-size: 1.5rem; margin-bottom: 16px; color: var(--rose-gold); }
+        .policy-section p { line-height: 1.8; opacity: 0.8; font-size: 1.05rem; }
+        .policy-section ul { margin-top: 16px; padding-left: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .policy-section li { line-height: 1.6; opacity: 0.8; }
+        
+        .policy-highlight { background: var(--ivory); padding: 32px; border-radius: 24px; border-left: 4px solid var(--rose-gold); margin: 20px 0; }
+        .policy-highlight h3 { font-size: 1.2rem; margin-bottom: 8px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="menu-toggle" id="mobile-menu-btn"><i class="ph-light ph-list"></i></button>
+            <div class="logo"><a href="index.html">Sorielle</a></div>
+            <nav class="nav-links">
+                <a href="categories.html">Shop</a>
+                <a href="about.html">Story</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <div id="auth-container" class="auth-ui"></div>
+                <button class="icon-btn" id="open-cart">
+                    <i class="ph-light ph-tote"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="policy-page">
+        <div class="container">
+            <div class="policy-container">
+                <h1 class="section-title">Store Policies</h1>
+                <p style="margin-top: 10px; opacity: 0.5;">Last updated: May 2026</p>
+
+                <div class="policy-content">
+                    <section class="policy-section">
+                        <h2>Returns & Exchanges</h2>
+                        <p>At Sorielle, we strive to ensure you are completely satisfied with your purchase. However, due to the hygiene nature of cosmetic products, we have established the following guidelines:</p>
+                        <div class="policy-highlight">
+                            <h3>7-Day Return Window</h3>
+                            <p>You can request a return or exchange within **7 days** of receiving your order.</p>
+                        </div>
+                        <ul>
+                            <li>Products must be in their original, unopened packaging.</li>
+                            <li>The safety seal must be intact.</li>
+                            <li style="color: #d9534f; font-weight: 600;">Used or opened products are strictly non-returnable and non-refundable.</li>
+                        </ul>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2>Refunds</h2>
+                        <p>Once your return is received and inspected by our quality control team, we will process your refund.</p>
+                        <div class="policy-highlight">
+                            <h3>Timeline</h3>
+                            <p>Approved refunds will be credited back to your original payment method within **5 to 7 business days**.</p>
+                        </div>
+                    </section>
+
+                    <section class="policy-section">
+                        <h2>Shipping Claims</h2>
+                        <p>If you receive a damaged or incorrect item, please contact us at **support@soriellecosmetics.com** within 24 hours of delivery with photos of the product and packaging. We will prioritize your replacement or refund.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Sorielle</div>
+                    <p>Affordable luxury for every Indian woman.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="categories.html">Shop</a>
+                    <a href="about.html">Our Story</a>
+                    <a href="policy.html">Shipping & Returns</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sorielle Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

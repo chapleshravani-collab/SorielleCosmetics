@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorielle Cosmetics | Luxury Minimalist Beauty</title>
+    <meta name="description" content="Premium minimalist beauty products.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <button class="menu-toggle" id="mobile-menu-btn"><i class="ph-light ph-list"></i></button>
+            <div class="logo"><a href="index.html">Sorielle</a></div>
+            <nav class="nav-links">
+                <a href="categories.html">Shop</a>
+                <a href="about.html">Story</a>
+                <a href="lab.html" style="color: var(--rose-gold); font-weight: 600;"><i class="ph-fill ph-sparkle"></i> Lab</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <button class="icon-btn"><i class="ph-light ph-magnifying-glass"></i></button>
+                <div id="auth-container" class="auth-ui">
+                    <!-- Login/Signup or User Profile injected by JS -->
+                    <button class="btn-text" id="login-btn">Login</button>
+                    <button class="btn btn-primary btn-sm" id="signup-btn">Sign Up</button>
+                </div>
+                <button class="icon-btn" id="open-cart">
+                    <i class="ph-light ph-tote"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-dropdown" id="mobile-dropdown">
+            <a href="categories.html">Shop</a>
+            <a href="about.html">Story</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Top Banner Carousel -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel-slide active">
+                    <img src="assets/hero_model.png" alt="New Launch">
+                    <div class="carousel-content">
+                        <span class="carousel-badge">New Launch</span>
+                        <h2 class="carousel-title">Glow Beyond Beauty</h2>
+                        <a href="#shop" class="btn btn-primary">Shop Now</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/hero_banner_1777119315267.png" alt="Festive Sale">
+                    <div class="carousel-content">
+                        <span class="carousel-badge">Festive Sale</span>
+                        <h2 class="carousel-title">Radiance Redefined</h2>
+                        <a href="#shop" class="btn btn-primary">Explore More</a>
+                    </div>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Icons -->
+        <section class="categories-section section-padding">
+            <div class="container">
+                <div class="categories-grid">
+                    <a href="categories.html#lips" class="category-item">
+                        <div class="category-icon-wrapper">
+                            <!-- SVG Lips Icon -->
+                            <svg width="32" height="32" viewBox="0 0 256 256" fill="var(--rose-gold)" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M232,128c0,48-40,88-104,88S24,176,24,128s40-56,104-56S232,80,232,128Z" opacity="0.2"></path>
+                                <path d="M236.4,115.6a100.1,100.1,0,0,0-15.6-11.4c-12-7-23.9-12.2-36.8-12.2a67.8,67.8,0,0,0-21.7,3.6c-13.4,4.7-22.5,12.4-34.3,12.4s-20.9-7.7-34.3-12.4a67.8,67.8,0,0,0-21.7-3.6c-12.9,0-24.8,5.2-36.8,12.2a100.1,100.1,0,0,0-15.6,11.4A12,12,0,0,0,16,128c0,26,17.4,45.8,42.8,58.8C81.6,198.4,105,204,128,204s46.4-5.6,69.2-17.2c25.4-13,42.8-32.8,42.8-58.8A12,12,0,0,0,236.4,115.6ZM128,188c-20.5,0-41.2-5-60.7-14.9C45.2,162.1,32.3,147.2,28.8,128a113,113,0,0,1,16.5-10.4c10.4-6.1,19.9-10,28.7-10a51.7,51.7,0,0,1,16.3,2.7c15.8,5.6,26.5,14.7,37.7,14.7s21.9-9.1,37.7-14.7a51.7,51.7,0,0,1,16.3-2.7c8.8,0,18.3,3.9,28.7,10a113,113,0,0,1,16.5,10.4C223.7,147.2,210.8,162.1,188.7,173.1,169.2,183,148.5,188,128,188Z"></path>
+                            </svg>
+                        </div>
+                        <span class="category-label">Lips</span>
+                    </a>
+                    <a href="categories.html#eyes" class="category-item">
+                        <div class="category-icon-wrapper">
+                            <i class="ph-bold ph-eye" style="font-size: 2rem; color: var(--rose-gold);"></i>
+                        </div>
+                        <span class="category-label">Eyes</span>
+                    </a>
+                    <a href="categories.html#face" class="category-item">
+                        <div class="category-icon-wrapper">
+                            <i class="ph-bold ph-user-focus" style="font-size: 2rem; color: var(--rose-gold);"></i>
+                        </div>
+                        <span class="category-label">Face</span>
+                    </a>
+                    <a href="categories.html#skincare" class="category-item">
+                        <div class="category-icon-wrapper">
+                            <i class="ph-bold ph-drop" style="font-size: 2rem; color: var(--rose-gold);"></i>
+                        </div>
+                        <span class="category-label">Skincare</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offers & Promotions -->
+        <section class="offers-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Special Offers</h2>
+                </div>
+                <div class="offers-scroll">
+                    <div class="offer-card" style="background: linear-gradient(135deg, #FFF0F0, #FADCD9);">
+                        <div class="offer-image">
+                            <img src="assets/lip_gloss.png" alt="Offer 1">
+                        </div>
+                        <div class="offer-content">
+                            <div class="offer-tag">10% OFF</div>
+                            <h3 class="offer-title">First Order</h3>
+                            <p class="offer-desc">Use code: WELCOME10</p>
+                        </div>
+                    </div>
+                    <div class="offer-card" style="background: linear-gradient(135deg, #F0F8FF, #E0F2F1);">
+                        <div class="offer-image">
+                            <img src="assets/product_moisturizer_1777119378878.png" alt="Offer 2">
+                        </div>
+                        <div class="offer-content">
+                            <div class="offer-tag">FREE</div>
+                            <h3 class="offer-title">Shipping</h3>
+                            <p class="offer-desc">On orders above ₹799</p>
+                        </div>
+                    </div>
+                    <div class="offer-card" style="background: linear-gradient(135deg, #F5F5F5, #E8DCD5);">
+                        <div class="offer-image">
+                            <img src="assets/eye_palette.png" alt="Offer 3">
+                        </div>
+                        <div class="offer-content">
+                            <div class="offer-tag">BOGO</div>
+                            <h3 class="offer-title">Combo Deals</h3>
+                            <p class="offer-desc">Buy 2 Get 1 Free</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Products (Horizontal Scroll) -->
+        <section class="trending-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Trending Now</h2>
+                </div>
+                <div class="horizontal-scroll">
+                    <div class="scroll-card product-card-interactive" data-id="rose-glow-lip-gloss" data-name="Rose Glow Lip Gloss" data-price="₹499" data-image="assets/lip_gloss.png">
+                        <div class="card-image-wrapper">
+                            <a href="product.html"><img src="assets/lip_gloss.png" alt="Rose Glow Lip Gloss"></a>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-name">Rose Glow Lip Gloss</h3>
+                            <div class="price-container">
+                                <span class="price-tag">₹499</span>
+                                <span class="compare-price">₹699</span>
+                                <span class="discount-badge">28% OFF</span>
+                            </div>
+                            <button class="btn btn-primary add-to-cart-quick">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="scroll-card product-card-interactive" data-id="nude-dream-palette" data-name="Nude Dream Palette" data-price="₹799" data-image="assets/eye_palette.png">
+                        <div class="card-image-wrapper">
+                            <a href="product.html"><img src="assets/eye_palette.png" alt="Nude Dream Palette"></a>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-name">Nude Dream Palette</h3>
+                            <div class="price-container">
+                                <span class="price-tag">₹799</span>
+                                <span class="compare-price">₹999</span>
+                                <span class="discount-badge">20% OFF</span>
+                            </div>
+                            <button class="btn btn-primary add-to-cart-quick">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="scroll-card product-card-interactive" data-id="lumiere-serum" data-name="Lumière Serum" data-price="₹899" data-image="assets/product_serum_1777119333775.png">
+                        <div class="card-image-wrapper">
+                            <a href="product.html"><img src="assets/product_serum_1777119333775.png" alt="Lumière Serum"></a>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-name">Lumière Serum</h3>
+                            <div class="price-container">
+                                <span class="price-tag">₹899</span>
+                                <span class="compare-price">₹1299</span>
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+                            <button class="btn btn-primary add-to-cart-quick">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Bestsellers -->
+        <section class="featured-section section-padding" id="shop">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Bestsellers</h2>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card product-card-interactive" data-id="silk-cloud-moisturizer" data-name="Silk Cloud Moisturizer" data-price="₹549" data-image="assets/product_moisturizer_1777119378878.png">
+                        <div class="product-image-container">
+                            <a href="product.html"><img src="assets/product_moisturizer_1777119378878.png" alt="Silk Cloud Moisturizer"></a>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Silk Cloud Moisturizer</h3>
+                            <div class="price-container">
+                                <span class="price-tag">₹549</span>
+                                <span class="compare-price">₹699</span>
+                                <span class="discount-badge">21% OFF</span>
+                            </div>
+                            <button class="btn btn-primary add-to-cart-quick">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card product-card-interactive" data-id="velvet-rose-lipstick" data-name="Velvet Rose Lipstick" data-price="₹349" data-image="assets/product_lipstick_1777119354515.png">
+                        <div class="product-image-container">
+                            <a href="product.html"><img src="assets/product_lipstick_1777119354515.png" alt="Velvet Rose Lipstick"></a>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">Velvet Rose Lipstick</h3>
+                            <div class="price-container">
+                                <span class="price-tag">₹349</span>
+                                <span class="compare-price">₹499</span>
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+                            <button class="btn btn-primary add-to-cart-quick">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Sorielle</div>
+                    <p>Affordable luxury for every Indian woman.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="categories.html">Shop</a>
+                    <a href="about.html">Our Story</a>
+                    <a href="policy.html">Shipping & Returns</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#">Shipping Policy</a>
+                    <a href="#">Returns</a>
+                    <a href="#">FAQs</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sorielle Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2 class="cart-title">Your Cart</h2>
+            <button class="close-cart" id="close-cart"><i class="ph-light ph-x"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total</span>
+                <span id="cart-total-value">₹0.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" id="cart-checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
